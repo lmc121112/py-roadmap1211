@@ -13,8 +13,8 @@
         table { width: 100%; border-collapse: collapse; margin: 15px 0; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background: #eef4fa; }
-        .note { background: #fff9db; border-left: 5px solid #fcc419; padding: 12px; border-radius: 5px; }
-        .nav { margin-top: 20px; text-align: right; }
+        .note { background: #fff9db; border-left: 5px solid #fcc419; padding: 12px; border-radius: 5px; margin-top: 10px; }
+        .nav { margin-top: 20px; display: flex; justify-content: space-between; }
         .btn { display: inline-block; background: #2b5b84; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: bold; }
     </style>
 </head>
@@ -38,7 +38,7 @@
                 <td>Số nguyên</td>
                 <td><code>int</code></td>
                 <td><code>tuoi = 8</code></td>
-                <td>Không giới hạn độ lớn (lưu được cả số có hàng trăm chữ số!)</td>
+                <td>Không giới hạn độ lớn (tính chính xác tới hàng trăm chữ số!)</td>
             </tr>
             <tr>
                 <td>Số thập phân</td>
@@ -50,7 +50,7 @@
                 <td>Chuỗi ký tự</td>
                 <td><code>str</code></td>
                 <td><code>ten = "Minh"</code></td>
-                <td>Phải đặt trong dấu nháy kép <code>" "</code> hoặc nháy đơn <code>' '</code></td>
+                <td>Đặt trong dấu nháy kép <code>" "</code> hoặc nháy đơn <code>' '</code></td>
             </tr>
             <tr>
                 <td>Đúng / Sai</td>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="card">
-        <h2>2. Các Phép Tính Toán Trong Python</h2>
+        <h2>2. Các Phép Tính Toán & Thứ Tự Ưu Tiên</h2>
         <pre>a = 10
 b = 3
 print(a + b)   # Cộng: 13
@@ -73,12 +73,28 @@ print(a // b)  # Chia lấy phần nguyên: 3
 print(a % b)   # Chia lấy số dư: 1
 print(a ** b)  # Lũy thừa (10 mũ 3): 1000</pre>
         <div class="note">
-            <b>Mẹo nhớ:</b> Khác với toán học thông thường, phép chia <code>/</code> luôn ra số thập phân. Muốn lấy kết quả nguyên như phép chia có dư ở lớp 3, hãy dùng <code>//</code> và <code>%</code>.
+            <b>Thứ tự ưu tiên phép tính:</b> Giống hệt toán học ở trường: <b>Trong ngoặc <code>( )</code> &rarr; Lũy thừa <code>**</code> &rarr; Nhân/Chia <code>* / // %</code> &rarr; Cộng/Trừ <code>+ -</code></b>.<br>
+            Ví dụ: Muốn tính trung bình có hệ số, bắt buộc phải đóng ngoặc tử số: <code>(toan * 2 + van * 2 + anh) / 5</code>.
         </div>
     </div>
 
     <div class="card">
-        <h2>3. Ép Kiểu Dữ Liệu (Type Casting)</h2>
+        <h2>3. Ứng Dụng <code>//</code> và <code>%</code> Để Quy Đổi & Tách Chữ Số</h2>
+        <p>Hai phép toán chia lấy nguyên (<code>//</code>) và chia lấy dư (<code>%</code>) cực kỳ hữu ích trong lập trình:</p>
+        <pre># 1. Quy đổi thời gian từ tổng số giây S (ví dụ S = 3661):
+gio = S // 3600           # 1 giờ (vì 1 giờ = 3600 giây)
+phut = (S % 3600) // 60   # Lấy số giây lẻ sau khi chia giờ, rồi chia 60 -> 1 phút
+giay = S % 60             # Số giây còn dư lại -> 1 giây
+
+# 2. Tách từng chữ số của một số có 4 chữ số (ví dụ N = 1234):
+hang_nghin = N // 1000          # 1
+hang_tram  = (N // 100) % 10    # 2
+hang_chuc  = (N // 10) % 10     # 3
+hang_donvi = N % 10             # 4</pre>
+    </div>
+
+    <div class="card">
+        <h2>4. Ép Kiểu Dữ Liệu (Type Casting)</h2>
         <p>Chuỗi <code>"5"</code> là chữ cái, không thể cộng trực tiếp với số <code>10</code>. Ta cần biến đổi kiểu dữ liệu cho chúng:</p>
         <pre>chu_so = "5"
 so_nguyen = int(chu_so)      # Biến "5" thành số 5
@@ -87,21 +103,16 @@ chuoi_moi = str(100)         # Biến số 100 thành chuỗi "100"</pre>
     </div>
 
     <div class="card">
-        <h2>4. Mật Mã Chữ Cái (Bảng Mã ASCII)</h2>
-        <p>Máy tính không hiểu chữ cái, nó chỉ hiểu các con số! Mỗi chữ cái đều có một "số báo danh" riêng gọi là mã ASCII (ví dụ: <code>'A'</code> là 65, <code>'B'</code> là 66, <code>'a'</code> là 97).</p>
-        <pre># Hàm ord(): Xem số báo danh của 1 ký tự
-print(ord('A'))       # Kết quả: 65
-
-# Hàm chr(): Từ số báo danh tìm lại ký tự
-print(chr(66))       # Kết quả: B
-
-# Tìm chữ cái đứng liền sau 'A':
-ma_tiep_theo = ord('A') + 1
-print(chr(ma_tiep_theo))  # Kết quả: B</pre>
+        <h2>5. Mật Mã Chữ Cái (Bảng Mã ASCII)</h2>
+        <p>Mỗi ký tự đều có một "số báo danh" riêng gọi là mã ASCII (<code>'A'</code> là 65, <code>'B'</code> là 66, <code>'a'</code> là 97).</p>
+        <pre>print(ord('A'))            # Xem mã ASCII của 'A' -> 65
+print(chr(66))             # Từ mã 66 tìm lại ký tự -> B
+print(chr(ord('A') + 1))   # Tìm chữ cái liền sau 'A' -> B</pre>
     </div>
 
     <div class="nav">
-        <a href="chuong1_nhapxuat.html" class="btn">Sang Phần 2: Nhập / Xuất Cơ Bản &rarr;</a>
+        <a href="index.html" class="btn">&larr; Trang Chủ</a>
+        <a href="chuong1_nhapxuat.html" class="btn">Sang Phần 2: Nhập/Xuất & Công Thức &rarr;</a>
     </div>
 </body>
 </html>
