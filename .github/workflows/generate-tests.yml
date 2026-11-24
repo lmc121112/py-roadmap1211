@@ -1,0 +1,41 @@
+name: Generate OJ Testcases
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/gen_tests.py'
+      - '.github/workflows/generate-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Clean old testcases and generate new ones
+        run: |
+          rm -rf testcases/*
+          python3 scripts/gen_tests.py
+
+      - name: Commit and push generated .INP/.OUT files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add testcases/
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: auto-generate .INP and .OUT testcases"
+            git push
+          else
+            echo "No changes in testcases."
+          fi
