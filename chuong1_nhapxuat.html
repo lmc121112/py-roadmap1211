@@ -3,67 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chương 1.2: Nhập và Xuất Cơ Bản</title>
+    <title>Chương 1.2: Nhập/Xuất & Công Thức Toán Học O(1)</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; max-width: 850px; margin: 0 auto; padding: 20px; background: #f4f7f9; color: #333; }
         header { background: #2b5b84; color: white; padding: 20px; border-radius: 10px; text-align: center; }
         .card { background: white; padding: 20px; margin-top: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
         h2 { color: #2b5b84; border-bottom: 2px solid #ffd43b; padding-bottom: 5px; }
         pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 15px; }
-        .note { background: #e7f5ff; border-left: 5px solid #339af0; padding: 12px; border-radius: 5px; }
+        .note { background: #e7f5ff; border-left: 5px solid #339af0; padding: 12px; border-radius: 5px; margin-top: 10px; }
+        .warn { background: #fff5f5; border-left: 5px solid #fa5252; padding: 12px; border-radius: 5px; margin-top: 10px; }
         .nav { margin-top: 20px; display: flex; justify-content: space-between; }
         .btn { display: inline-block; background: #2b5b84; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: bold; }
     </style>
 </head>
 <body>
     <header>
-        <h1>Chương 1 - Phần 2: Nhập và Xuất Cơ Bản</h1>
-        <p>Giao tiếp giữa chương trình Python và hệ thống chấm bài (OJ)</p>
+        <h1>Chương 1 - Phần 2: Nhập/Xuất & Tư Duy Công Thức O(1)</h1>
+        <p>Đọc dữ liệu chuẩn trên OJ và các công thức toán học không cần vòng lặp</p>
     </header>
 
     <div class="card">
-        <h2>1. Lệnh Xuất Dữ Liệu: <code>print()</code></h2>
-        <p>Tương tự khối lệnh <b>"Nói Xin chào!"</b> trong Scratch, Python dùng lệnh <code>print()</code> để in kết quả ra màn hình.</p>
-        <pre># In chữ và số cách nhau bởi dấu phẩy (tự động thêm 1 dấu cách ở giữa)
-print("Xin chao", "Python")      # Xin chao Python
+        <h2>1. Lệnh Xuất Dữ Liệu: <code>print()</code> và <code>f-string</code></h2>
+        <pre># In nhiều giá trị cách nhau bởi 1 dấu cách:
+print(gio, phut, giay)
 
-# Dùng f-string để ghép biến vào câu cực kỳ gọn gàng:
+# Dùng f-string để ghép biến vào câu văn hoặc làm tròn số thập phân:
 ten = "Minh"
 tuoi = 8
-print(f"Xin chao {ten}, nam nay {tuoi} tuoi!")
-
-# Làm tròn số thập phân 2 chữ số với f-string:
 cao = 1.4
-print(f"Chieu cao: {cao:.2f}m")  # Chieu cao: 1.40m</pre>
+print(f"Xin chao {ten}, {tuoi} tuoi, cao {cao:.2f}m!")
+# Kết quả: Xin chao Minh, 8 tuoi, cao 1.40m!</pre>
     </div>
 
     <div class="card">
-        <h2>2. Lệnh Nhập Dữ Liệu: <code>input()</code></h2>
-        <p>Tương tự khối lệnh <b>"Hỏi và đợi"</b> trong Scratch. Lưu ý cực kỳ quan trọng: <code>input()</code> luôn đọc vào dưới dạng <b>chuỗi (<code>str</code>)</b>.</p>
-        <pre># Nhập 1 chuỗi trên 1 dòng:
-ten = input()
+        <h2>2. Các Mẫu Nhập Dữ Liệu (<code>input()</code>) Phổ Biến Trên OJ</h2>
+        <pre># Mẫu 1: Nhập 1 số nguyên trên 1 dòng
+n = int(input())
 
-# Nhập 1 số nguyên trên 1 dòng (phải ép kiểu int):
-tuoi = int(input())</pre>
-    </div>
-
-    <div class="card">
-        <h2>3. Nhập Nhiều Số Trên Cùng Một Dòng (Rất hay gặp trên OJ!)</h2>
-        <p>Khi đề bài cho 2 số cách nhau bởi dấu cách (ví dụ: <code>10 3</code>) trên cùng 1 dòng, ta dùng bộ đôi <code>.split()</code> để cắt chuỗi và <code>map()</code> để ép kiểu đồng loạt:</p>
-        <pre># Nhập 2 số nguyên a, b trên cùng một dòng:
+# Mẫu 2: Nhập 2 số nguyên trên cùng 1 dòng (cách nhau bởi dấu cách)
 a, b = map(int, input().split())
 
-# Nhập 1 số nguyên và 1 số thực trên cùng một dòng:
+# Mẫu 3: Nhập 3 số nguyên trên cùng 1 dòng
+n, p, m = map(int, input().split())
+
+# Mẫu 4: Nhập 3 số thực trên cùng 1 dòng
+toan, van, anh = map(float, input().split())
+
+# Mẫu 5: Nhập 1 số nguyên và 1 số thực trên cùng 1 dòng
 tuoi_str, cao_str = input().split()
 tuoi = int(tuoi_str)
 cao = float(cao_str)</pre>
-        <div class="note">
-            <b>Giải thích nhanh:</b> <code>input().split()</code> giống như chiếc kéo cắt dòng chữ <code>"10 3"</code> tại vị trí dấu cách thành hai mảnh <code>"10"</code> và <code>"3"</code>. Sau đó <code>map(int, ...)</code> biến cả hai mảnh thành số nguyên để đưa vào <code>a</code> và <code>b</code>.
+    </div>
+
+    <div class="card">
+        <h2>3. Công Thức Tính Nhanh O(1) Trong Lập Trình Thi Đấu</h2>
+        <p>Khi dữ liệu lên tới <code>10<sup>9</sup></code> hoặc <code>10<sup>18</sup></code>, nếu dùng vòng lặp đếm từng bước chương trình sẽ chạy quá thời gian (TLE). Thay vào đó, ta dùng công thức toán học để tính ngay trong 1 phép tính:</p>
+
+        <h3>a) Tổng các số tự nhiên từ 1 đến N</h3>
+        <p>Thay vì cộng dồn <code>1 + 2 + 3 + ... + N</code>, ta dùng công thức Gauss:</p>
+        <pre># Dùng phép chia nguyên // để kết quả luôn là số nguyên chính xác:
+tong = N * (N + 1) // 2</pre>
+
+        <h3>b) Phép chia làm tròn lên (Ceiling Division)</h3>
+        <p>Ví dụ: Có <code>A</code> chiếc kẹo, mỗi hộp đựng tối đa <code>B</code> chiếc. Cần ít nhất bao nhiêu hộp để đựng hết tất cả số kẹo? (Nếu dư dù chỉ 1 chiếc vẫn phải thêm 1 hộp mới).</p>
+        <pre># Công thức chuẩn chỉ dùng số nguyên:
+so_hop = (A + B - 1) // B</pre>
+        <div class="warn">
+            <b>Cảnh báo bẫy số thực (<code>float</code>):</b> Tuyệt đối không dùng <code>math.ceil(A / B)</code> khi <code>A, B</code> lớn tới <code>10<sup>18</sup></code>, vì phép chia <code>/</code> đổi sang số thực bị mất độ chính xác ở các chữ số cuối. Công thức <code>(A + B - 1) // B</code> hoạt động chính xác 100% với mọi số nguyên lớn!
         </div>
     </div>
 
     <div class="nav">
-        <a href="chuong1_coban.html" class="btn">&larr; Quay lại Phần 1: Kiến Thức Cơ Bản</a>
+        <a href="chuong1_coban.html" class="btn">&larr; Quay lại Phần 1</a>
+        <a href="index.html" class="btn">Trang Chủ &rarr;</a>
     </div>
 </body>
 </html>
