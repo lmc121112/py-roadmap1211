@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 1.2: Nhập và Xuất Cơ Bản</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; max-width: 850px; margin: 0 auto; padding: 20px; background: #f4f7f9; color: #333; }
+        header { background: #2b5b84; color: white; padding: 20px; border-radius: 10px; text-align: center; }
+        .card { background: white; padding: 20px; margin-top: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
+        h2 { color: #2b5b84; border-bottom: 2px solid #ffd43b; padding-bottom: 5px; }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 15px; }
+        .note { background: #e7f5ff; border-left: 5px solid #339af0; padding: 12px; border-radius: 5px; }
+        .nav { margin-top: 20px; display: flex; justify-content: space-between; }
+        .btn { display: inline-block; background: #2b5b84; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chương 1 - Phần 2: Nhập và Xuất Cơ Bản</h1>
+        <p>Giao tiếp giữa chương trình Python và hệ thống chấm bài (OJ)</p>
+    </header>
+
+    <div class="card">
+        <h2>1. Lệnh Xuất Dữ Liệu: <code>print()</code></h2>
+        <p>Tương tự khối lệnh <b>"Nói Xin chào!"</b> trong Scratch, Python dùng lệnh <code>print()</code> để in kết quả ra màn hình.</p>
+        <pre># In chữ và số cách nhau bởi dấu phẩy (tự động thêm 1 dấu cách ở giữa)
+print("Xin chao", "Python")      # Xin chao Python
+
+# Dùng f-string để ghép biến vào câu cực kỳ gọn gàng:
+ten = "Minh"
+tuoi = 8
+print(f"Xin chao {ten}, nam nay {tuoi} tuoi!")
+
+# Làm tròn số thập phân 2 chữ số với f-string:
+cao = 1.4
+print(f"Chieu cao: {cao:.2f}m")  # Chieu cao: 1.40m</pre>
+    </div>
+
+    <div class="card">
+        <h2>2. Lệnh Nhập Dữ Liệu: <code>input()</code></h2>
+        <p>Tương tự khối lệnh <b>"Hỏi và đợi"</b> trong Scratch. Lưu ý cực kỳ quan trọng: <code>input()</code> luôn đọc vào dưới dạng <b>chuỗi (<code>str</code>)</b>.</p>
+        <pre># Nhập 1 chuỗi trên 1 dòng:
+ten = input()
+
+# Nhập 1 số nguyên trên 1 dòng (phải ép kiểu int):
+tuoi = int(input())</pre>
+    </div>
+
+    <div class="card">
+        <h2>3. Nhập Nhiều Số Trên Cùng Một Dòng (Rất hay gặp trên OJ!)</h2>
+        <p>Khi đề bài cho 2 số cách nhau bởi dấu cách (ví dụ: <code>10 3</code>) trên cùng 1 dòng, ta dùng bộ đôi <code>.split()</code> để cắt chuỗi và <code>map()</code> để ép kiểu đồng loạt:</p>
+        <pre># Nhập 2 số nguyên a, b trên cùng một dòng:
+a, b = map(int, input().split())
+
+# Nhập 1 số nguyên và 1 số thực trên cùng một dòng:
+tuoi_str, cao_str = input().split()
+tuoi = int(tuoi_str)
+cao = float(cao_str)</pre>
+        <div class="note">
+            <b>Giải thích nhanh:</b> <code>input().split()</code> giống như chiếc kéo cắt dòng chữ <code>"10 3"</code> tại vị trí dấu cách thành hai mảnh <code>"10"</code> và <code>"3"</code>. Sau đó <code>map(int, ...)</code> biến cả hai mảnh thành số nguyên để đưa vào <code>a</code> và <code>b</code>.
+        </div>
+    </div>
+
+    <div class="nav">
+        <a href="chuong1_coban.html" class="btn">&larr; Quay lại Phần 1: Kiến Thức Cơ Bản</a>
+    </div>
+</body>
+</html>
